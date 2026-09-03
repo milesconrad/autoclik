@@ -2,6 +2,7 @@ from pynput.mouse import Controller, Button
 from pynput.keyboard import Listener, Key
 from threading import Thread, Event
 from time import sleep
+from datetime import datetime
 
 mouse = Controller()
 active = Event()
@@ -17,8 +18,10 @@ def on_press(pressed_key):
                 if last_key.char == '[':
                     if active.is_set():
                         active.clear()
+                        print(f"[{datetime.now().strftime("%H:%M:%S")}] Clicker deactivated")
                     else:
                         active.set()
+                        print(f"[{datetime.now().strftime("%H:%M:%S")}] Clicker activated")
                         
     last_key = pressed_key
     
