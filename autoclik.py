@@ -14,16 +14,15 @@ def on_press(pressed_key):
     # it throws an AttributeError and this thread closes
     if not isinstance(pressed_key, Key):
         if pressed_key.char == ']':
-            if not isinstance(last_key, Key):
-                if last_key.char == '[':
-                    if active.is_set():
-                        active.clear()
-                        print(f"[{datetime.now().strftime("%H:%M:%S")}] Clicker deactivated")
-                    else:
-                        active.set()
-                        print(f"[{datetime.now().strftime("%H:%M:%S")}] Clicker activated")
+            if last_key.char == '[':
+                if active.is_set():
+                    active.clear()
+                    print(f"[{datetime.now().strftime("%H:%M:%S")}] Clicker deactivated")
+                else:
+                    active.set()
+                    print(f"[{datetime.now().strftime("%H:%M:%S")}] Clicker activated")
                         
-    last_key = pressed_key
+        last_key = pressed_key
     
 def clicker():
     while True:
